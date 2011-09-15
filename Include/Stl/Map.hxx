@@ -1,5 +1,5 @@
-#ifndef STL_MAP_HXX
-#define STL_MAP_HXX 1
+#ifndef Stl_Map_hxx_INCLUDED
+#define Stl_Map_hxx_INCLUDED 1
 
 #include <map>
 #include <string>

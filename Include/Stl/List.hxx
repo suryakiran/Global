@@ -1,27 +1,20 @@
-#ifndef STL_LIST_HXX
-#define STL_LIST_HXX 1
+#ifndef Stl_List_hxx_INCLUDED
+#define Stl_List_hxx_INCLUDED 1
 
 #include <list>
 #include <string>
 
-typedef std::list<std::string> StringList ;
-typedef StringList::iterator StringListIter;
-typedef StringList::const_iterator StringListIterC;
+#include <boost/preprocessor/cat.hpp>
 
-typedef std::list<int> IntList ;
-typedef IntList::iterator IntListIter;
-typedef IntList::const_iterator IntListIterC;
+#define DEFINE_LIST(p_type, p_name)                          \
+  typedef std::list<p_type> p_name;                          \
+  typedef p_name::iterator BOOST_PP_CAT(p_name, Iter);       \
+  typedef p_name::const_iterator BOOST_PP_CAT(p_name, IterC)
 
-typedef std::list<long> LongList ;
-typedef LongList::iterator LongListIter;
-typedef LongList::const_iterator LongListIterC;
-
-typedef std::list<double> DoubleList ;
-typedef DoubleList::iterator DoubleListIter;
-typedef DoubleList::const_iterator DoubleListIterC;
-
-typedef std::list<float> FloatList ;
-typedef FloatList::iterator FloatListIter;
-typedef FloatList::const_iterator FloatListIterC;
+DEFINE_LIST(int,         IntList);
+DEFINE_LIST(long,        LongList);
+DEFINE_LIST(float,       FloatList);
+DEFINE_LIST(double,      DoubleList);
+DEFINE_LIST(std::string, StringList);
 
 #endif

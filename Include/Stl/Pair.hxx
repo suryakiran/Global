@@ -1,5 +1,5 @@
-#ifndef STL_PAIR_HXX
-#define STL_PAIR_HXX 1
+#ifndef Stl_Pair_hxx_INCLUDED
+#define Stl_Pair_hxx_INCLUDED 1
 
 #include <utility>
 

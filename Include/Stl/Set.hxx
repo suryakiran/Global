@@ -1,27 +1,20 @@
-#ifndef STL_SET_HXX
-#define STL_SET_HXX 1
+#ifndef Stl_Set_hxx_INCLUDED
+#define Stl_Set_hxx_INCLUDED 1
 
 #include <set>
 #include <string>
 
-typedef std::set<std::string> StringSet ;
-typedef StringSet::iterator StringSetIter;
-typedef StringSet::const_iterator StringSetIterC;
+#include <boost/preprocessor/cat.hpp>
 
-typedef std::set<int> IntSet ;
-typedef IntSet::iterator IntSetIter;
-typedef IntSet::const_iterator IntSetIterC;
+#define DEFINE_SET(p_type, p_name)                           \
+  typedef std::set<p_type> p_name;                           \
+  typedef p_name::iterator BOOST_PP_CAT(p_name, Iter);       \
+  typedef p_name::const_iterator BOOST_PP_CAT(p_name, IterC)
 
-typedef std::set<long> LongSet ;
-typedef LongSet::iterator LongSetIter;
-typedef LongSet::const_iterator LongSetIterC;
-
-typedef std::set<double> DoubleSet ;
-typedef DoubleSet::iterator DoubleSetIter;
-typedef DoubleSet::const_iterator DoubleSetIterC;
-
-typedef std::set<float> FloatSet ;
-typedef FloatSet::iterator FloatSetIter;
-typedef FloatSet::const_iterator FloatSetIterC;
+DEFINE_SET(int,         IntSet);
+DEFINE_SET(long,        LongSet);
+DEFINE_SET(float,       FloatSet);
+DEFINE_SET(double,      DoubleSet);
+DEFINE_SET(std::string, StringSet);
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef STL_VECTOR_HXX
-#define STL_VECTOR_HXX 1
+#ifndef Stl_Vector_hxx_INCLUDED
+#define Stl_Vector_hxx_INCLUDED 1
 
 #include <vector>
 #include <string>
@@ -13,8 +13,8 @@
 
 DEFINE_VECTOR(int,         IntVec);
 DEFINE_VECTOR(long,        LongVec);
-DEFINE_VECTOR(double,      DoubleVec);
 DEFINE_VECTOR(float,       FloatVec);
+DEFINE_VECTOR(double,      DoubleVec);
 DEFINE_VECTOR(std::string, StringVec);
 
 #endif
