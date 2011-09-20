@@ -11,10 +11,12 @@
   typedef p_name::iterator BOOST_PP_CAT(p_name, Iter);       \
   typedef p_name::const_iterator BOOST_PP_CAT(p_name, IterC)
 
-DEFINE_LIST(int,         IntList);
-DEFINE_LIST(long,        LongList);
-DEFINE_LIST(float,       FloatList);
-DEFINE_LIST(double,      DoubleList);
-DEFINE_LIST(std::string, StringList);
+namespace stl {
+  DEFINE_LIST(int,         IntList);
+  DEFINE_LIST(long,        LongList);
+  DEFINE_LIST(float,       FloatList);
+  DEFINE_LIST(double,      DoubleList);
+  DEFINE_LIST(std::string, StringList);
+}
 
 #endif
