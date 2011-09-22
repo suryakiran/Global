@@ -12,10 +12,12 @@
   typedef mapName::iterator   BOOST_PP_CAT (mapName, Iter);   \
   typedef mapName::const_iterator BOOST_PP_CAT(mapName, IterC)
 
-DEFINE_MAP(std::string, std::string, StringMap);
-DEFINE_MAP(int, int, IntMap);
-DEFINE_MAP(int, std::string, IntStringMap);
-DEFINE_MAP(std::string, int, StringIntMap);
+namespace stl {
+  DEFINE_MAP(std::string, std::string, StringMap);
+  DEFINE_MAP(int, int, IntMap);
+  DEFINE_MAP(int, std::string, IntStringMap);
+  DEFINE_MAP(std::string, int, StringIntMap);
+}
 
 #include <Stl/Pair.hxx>
 

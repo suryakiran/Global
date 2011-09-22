@@ -11,10 +11,12 @@
   typedef vecName::iterator BOOST_PP_CAT(vecName, Iter);       \
   typedef vecName::const_iterator BOOST_PP_CAT(vecName, IterC)
 
-DEFINE_VECTOR(int,         IntVec);
-DEFINE_VECTOR(long,        LongVec);
-DEFINE_VECTOR(float,       FloatVec);
-DEFINE_VECTOR(double,      DoubleVec);
-DEFINE_VECTOR(std::string, StringVec);
+namespace stl {
+  DEFINE_VECTOR(int,         IntVec);
+  DEFINE_VECTOR(long,        LongVec);
+  DEFINE_VECTOR(float,       FloatVec);
+  DEFINE_VECTOR(double,      DoubleVec);
+  DEFINE_VECTOR(std::string, StringVec);
+}
 
 #endif
