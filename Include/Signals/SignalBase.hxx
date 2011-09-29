@@ -1,5 +1,5 @@
-#ifndef Signals_hxx_INCLUDED
-#define Signals_hxx_INCLUDED 1
+#ifndef SignalBase_hxx_INCLUDED
+#define SignalBase_hxx_INCLUDED 1
 
 #include <string>
 #include <map>
