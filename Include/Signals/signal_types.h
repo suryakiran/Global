@@ -1,7 +1,8 @@
 #ifndef signal_types_h_INCLUDED
 #define signal_types_h_INCLUDED
 
-#include <boost/fusion/container.hpp>
+#include <boost/fusion/container/generation/make_vector.hpp>
+#include <boost/fusion/container/map.hpp>
 #include <boost/fusion/sequence/intrinsic.hpp>
 #include <boost/fusion/functional.hpp>
 #include <boost/fusion/iterator.hpp>
