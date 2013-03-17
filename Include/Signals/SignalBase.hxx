@@ -24,6 +24,28 @@ using namespace std ;
 #endif 
 
 #define BOOST_SIGNAL(...) boost::shared_ptr< boost::signals2::signal < __VA_ARGS__ > >
+BOOST_MPL_HAS_XXX_TRAIT_DEF(element_type);
+
+namespace detail {
+  template <class SmartPtrType, bool b>
+  struct element_type_p {
+    typedef typename SmartPtrType::element_type value_type;
+    typedef typename boost::add_reference<value_type>::type reference_type;
+  };
+
+  template <class SmartPtrType>
+  struct element_type_p<SmartPtrType, false> {
+    typedef typename SmartPtrType::value_type value_type;
+    typedef typename SmartPtrType::reference_type reference_type;
+  };
+  
+  template <class SmartPtrType>
+  struct element_type {
+    static const bool value = has_element_type<SmartPtrType>::value;
+    typedef typename element_type_p<SmartPtrType, value>::value_type value_type;
+    typedef typename element_type_p<SmartPtrType, value>::reference_type reference_type;
+  };
+}
 
 template <class derived_class>
 class SignalBase
@@ -36,9 +58,9 @@ class SignalBase
     template<class T> 
       struct get_type                                                   
       {                                                                                  
-        typedef typename boost::remove_reference <
-          typename fusion::result_of::at_key<signal_type, T>::type>::type
-          ::reference value_type;
+				typedef typename boost::remove_reference <
+					typename fusion::result_of::at_key<signal_type, T>::type>::type smart_ptr_type;
+        typedef typename detail::element_type<smart_ptr_type>::reference_type reference_type;
       };                                                                                
 
     struct initialize                                                                  
@@ -47,7 +69,7 @@ class SignalBase
         void operator() (FusionMapItem& p_item) const
         {
           typedef typename FusionMapItem::second_type SmartPtr;
-          typedef typename SmartPtr::value_type ItemType ;
+          typedef typename detail::element_type<SmartPtr>::value_type ItemType ;
           p_item.second = SmartPtr(new ItemType) ;
         }
     };                                                                               
@@ -60,7 +82,7 @@ class SignalBase
     }
 
     template <class T>                                                                  
-      typename get_type<T>::value_type                                              
+      typename get_type<T>::reference_type                                              
       signal (void) { return *(fusion::at_key<T>(m_signals)) ; }           
 
     virtual ~SignalBase()
@@ -75,7 +97,7 @@ class SignalBase
 	void emitSignal(BOOST_PP_IF(n,BOOST_PP_ENUM_SHIFTED_BINARY_PARAMS,void BOOST_PP_TUPLE_EAT(3))\
 			(BOOST_PP_INC(n), const T, &var))\
 	{\
-		fusion::fused<typename get_type<id>::value_type> functionObj (signal<id>()) ;\
+		fusion::fused<typename get_type<id>::reference_type> functionObj (signal<id>()) ;\
 		if (blockSignals()) return ;\
 		functionObj (fusion::make_vector(BOOST_PP_ENUM_SHIFTED_PARAMS(BOOST_PP_INC(n), var))) ;\
 	}
